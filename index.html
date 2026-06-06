@@ -2,294 +2,381 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="theme-color" content="#09090b">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="BREAK">
 <title>BREAKING THE HABIT</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<link rel="icon" type="image/svg+xml" href="icon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:#09090b;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-#app{position:relative;width:100%;max-width:480px;height:100%;margin:0 auto;overflow:hidden;background:#09090b;font-family:'Lilita One',cursive;color:#fff}
-.scr{display:none;flex-direction:column;height:100%;overflow-y:auto;padding:0 22px 40px;padding-top:max(20px,env(safe-area-inset-top))}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#09090b;font-family:'Lilita One',cursive;color:#fff}
+.scr{display:none;min-height:100vh;flex-direction:column}
 .scr.on{display:flex}
 
-@keyframes mg{0%,62%,100%{transform:none}63%{transform:translateX(-3px) skewX(-3deg)}63.6%{transform:translateX(4px) skewX(2deg)}64.2%{transform:translateX(-2px)}64.8%{transform:translateX(3px) skewX(-1deg)}65.4%{transform:none}67%{transform:translateX(3px) skewX(2deg)}67.5%{transform:none}69%{transform:translateX(-4px)}69.5%{transform:none}}
-@keyframes rg{0%,62%,100%{transform:translateX(0);opacity:0}63%{transform:translateX(-10px);opacity:1;clip-path:polygon(0 0,100% 0,100% 40%,0 40%)}63.6%{transform:translateX(7px);opacity:1}64.2%{transform:translateX(-5px);opacity:.7;clip-path:polygon(0 25%,100% 25%,100% 60%,0 60%)}64.8%{transform:translateX(0);opacity:0}67%{transform:translateX(-12px);opacity:1;clip-path:polygon(0 10%,100% 10%,100% 50%,0 50%)}67.5%{transform:translateX(0);opacity:0}69%{transform:translateX(-7px);opacity:.6;clip-path:polygon(0 55%,100% 55%,100% 90%,0 90%)}69.5%{transform:translateX(0);opacity:0}}
-@keyframes cg{0%,62%,100%{transform:translateX(0);opacity:0}63%{transform:translateX(10px);opacity:1;clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%)}63.6%{transform:translateX(-7px);opacity:1}64.2%{transform:translateX(6px);opacity:.7;clip-path:polygon(0 35%,100% 35%,100% 70%,0 70%)}64.8%{transform:translateX(0);opacity:0}67%{transform:translateX(11px);opacity:1;clip-path:polygon(0 45%,100% 45%,100% 80%,0 80%)}67.5%{transform:translateX(0);opacity:0}69%{transform:translateX(8px);opacity:.6;clip-path:polygon(0 0,100% 0,100% 40%,0 40%)}69.5%{transform:translateX(0);opacity:0}}
+/* MAX.CORE HEADER */
+.mc-hdr{display:flex;justify-content:space-between;align-items:center;padding:16px 22px 14px;border-bottom:1px solid #1a1a1a;flex-shrink:0}
+.mc-brand{display:flex;align-items:center;gap:10px}
+.mc-icon{font-size:18px;color:#f97316}
+.mc-corp{font-size:11px;color:#f97316;letter-spacing:3px}
+.mc-app{font-size:20px;color:#f97316;letter-spacing:2px;line-height:1}
+.mc-date{text-align:right;font-size:10px;color:#444;letter-spacing:1px;line-height:1.8}
 
-.logo{padding:26px 0 18px;text-align:center}
-.logo-corp{font-size:10px;color:#252525;letter-spacing:7px}
-.logo-name{font-size:44px;letter-spacing:4px;line-height:1;margin-top:4px;display:inline-block;position:relative;animation:mg 6s infinite}
+/* CARDS SCREEN */
+.home-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px 0}
+.home-corp{font-size:9px;color:#252525;letter-spacing:6px}
+.home-date{font-size:9px;color:#252525;letter-spacing:1px;text-align:right;line-height:1.6}
+
+@keyframes mg{0%,62%,100%{transform:none}63%{transform:translateX(-3px) skewX(-3deg)}64%{transform:translateX(4px)}65%{transform:none}67%{transform:translateX(3px)}69%{transform:translateX(-4px)}69.5%{transform:none}}
+@keyframes rg{0%,62%,100%{opacity:0}63%{transform:translateX(-10px);opacity:1;clip-path:polygon(0 0,100% 0,100% 40%,0 40%)}64%{transform:translateX(7px)}64.8%{opacity:0}67%{transform:translateX(-12px);opacity:1;clip-path:polygon(0 10%,100% 10%,100% 50%,0 50%)}67.5%{opacity:0}69%{transform:translateX(-7px);opacity:.6;clip-path:polygon(0 55%,100% 55%,100% 90%,0 90%)}69.5%{opacity:0}}
+@keyframes cg{0%,62%,100%{opacity:0}63%{transform:translateX(10px);opacity:1;clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%)}64%{transform:translateX(-7px)}64.8%{opacity:0}67%{transform:translateX(11px);opacity:1;clip-path:polygon(0 45%,100% 45%,100% 80%,0 80%)}67.5%{opacity:0}69%{transform:translateX(8px);opacity:.6;clip-path:polygon(0 0,100% 0,100% 40%,0 40%)}69.5%{opacity:0}}
+
+.logo{padding:16px 0 14px;text-align:center}
+.logo-name{font-size:44px;letter-spacing:4px;line-height:1;display:inline-block;position:relative;animation:mg 6s infinite}
 .logo-name::before,.logo-name::after{content:attr(data-t);position:absolute;top:0;left:0;font-family:'Lilita One',cursive;font-size:44px;letter-spacing:4px;width:100%;overflow:hidden}
 .logo-name::before{color:#ff0055;animation:rg 6s infinite;clip-path:polygon(0 0,100% 0,100% 45%,0 45%)}
 .logo-name::after{color:#00eeee;animation:cg 6s infinite;clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%)}
-.logo-sub{font-size:13px;color:#2a2a2a;letter-spacing:4px;margin-top:-2px}
+.logo-sub{font-size:12px;color:#2a2a2a;letter-spacing:4px}
 
-.add-row{display:flex;gap:10px;margin-bottom:22px}
-.add-row input{flex:1;background:#111113;border:1px solid #1e1e1e;border-radius:14px;padding:16px 18px;color:#fff;font-family:'Lilita One',cursive;font-size:16px;outline:none;letter-spacing:1px}
-.add-row input::placeholder{color:#2a2a2a}
-.btn-plus{background:#fff;color:#09090b;border:none;border-radius:14px;width:56px;font-size:28px;cursor:pointer;font-family:'Lilita One',cursive}
+.add-row{display:flex;gap:10px;margin:0 22px 20px}
+.add-row input{flex:1;background:#111113;border:1px solid #2a2a2a;border-radius:14px;padding:16px 18px;color:#fff;font-family:'Lilita One',cursive;font-size:16px;outline:none;-webkit-appearance:none;appearance:none}
+.add-row input::placeholder{color:#333}
+.btn-plus{background:#f97316;color:#09090b;border:none;border-radius:14px;width:56px;font-size:28px;cursor:pointer;font-family:'Lilita One',cursive;flex-shrink:0}
 
-.card-list{display:flex;flex-direction:column;gap:12px}
-.vc{background:#111113;border-radius:16px;padding:18px 20px;cursor:pointer;display:flex;flex-direction:column;gap:10px;transition:background .15s}
-.vc:active{background:#16161a}
-.vc-top{display:flex;align-items:center;justify-content:space-between}
+.card-list{display:flex;flex-direction:column;gap:12px;padding:0 22px 80px}
+.vc{background:#111113;border-radius:16px;padding:18px 20px;cursor:pointer;display:flex;flex-direction:column;gap:10px}
+.vc-top{display:flex;align-items:flex-start;justify-content:space-between}
 .vc-name{font-size:20px;letter-spacing:1px}
 .vc-phase{font-size:10px;letter-spacing:2px;margin-top:5px}
-.vc-days-big{font-size:50px;line-height:1;text-align:right}
-.vc-days-lbl{font-size:10px;color:#333;letter-spacing:2px;text-align:right;margin-top:-2px}
-.g66-wrap{border-top:1px solid #191919;padding-top:10px}
+.vc-msg{font-size:10px;color:#333;letter-spacing:1px;margin-top:4px;font-style:normal}
+.vc-right{text-align:right}
+.vc-days-big{font-size:50px;line-height:1}
+.vc-days-lbl{font-size:10px;color:#333;letter-spacing:2px}
+.vc-relapse-mini{font-size:9px;color:#f97316;letter-spacing:1px;margin-top:2px}
+.g66-wrap{border-top:1px solid #1a1a1a;padding-top:10px}
 .g66-meta{display:flex;justify-content:space-between;font-size:9px;color:#2a2a2a;letter-spacing:2px;margin-bottom:6px}
 .g66{display:grid;grid-template-columns:repeat(11,1fr);gap:2px}
 .sq{aspect-ratio:1;border-radius:2px;background:#171719}
 .sq.done{background:var(--vc)}
 .sq.now{background:var(--vc);animation:sqp 1.8s ease-in-out infinite}
+.sq.relapsed{background:#f9731680}
 @keyframes sqp{0%,100%{opacity:1}50%{opacity:.4}}
-.empty{text-align:center;margin-top:80px}
+
+.empty{text-align:center;margin-top:60px;padding:0 22px}
 .e-sym{font-size:48px;color:#1a1a1a;display:block;margin-bottom:16px}
 .e-txt{font-size:13px;color:#1a1a1a;letter-spacing:3px}
 
-.hdr{display:flex;align-items:center;padding-bottom:4px;flex-shrink:0}
-.hdr-lbl{flex:1;text-align:center;font-size:11px;color:#252525;letter-spacing:5px}
-.ibtn{background:transparent;border:none;cursor:pointer;padding:8px;font-size:22px;color:#363636;transition:color .2s;font-family:inherit;line-height:1}
-.ibtn:active{color:#666}
-.ibtn.danger{color:#ef4444}
-
-.cnt-name{font-size:20px;letter-spacing:3px;text-align:center;margin-top:26px}
-.cnt-n{font-size:116px;line-height:1;text-align:center;margin-top:6px}
-.cnt-dl{font-size:16px;color:#2a2a2a;letter-spacing:5px;text-align:center;margin-top:-4px}
-.cnt-h{font-size:12px;color:#1e1e1e;text-align:center;margin-top:6px}
-.ptag{display:inline-block;border-radius:20px;padding:7px 18px;font-size:11px;letter-spacing:2px;border:1px solid;margin-top:16px}
-.pw{width:100%;margin-top:20px}
+/* COUNTER SCREEN */
+.cnt-body{padding:0 22px 80px;display:flex;flex-direction:column}
+.cnt-name{font-size:20px;letter-spacing:3px;text-align:center;margin-top:20px}
+.cnt-n{font-size:110px;line-height:1;text-align:center;margin-top:6px}
+.cnt-dl{font-size:16px;color:#2a2a2a;letter-spacing:5px;text-align:center}
+.cnt-h{font-size:12px;color:#1e1e1e;text-align:center;margin-top:4px}
+.ptag{display:inline-block;border-radius:20px;padding:7px 18px;font-size:11px;letter-spacing:2px;border:1px solid;margin-top:14px}
+.pw{width:100%;margin-top:18px}
 .pw-lbls{display:flex;justify-content:space-between;font-size:10px;color:#1e1e1e;margin-bottom:6px;letter-spacing:1px}
 .pw-track{width:100%;height:2px;background:#111113;border-radius:1px}
-.pw-fill{height:100%;border-radius:1px;transition:width 1.2s}
-.g66-full-wrap{margin-top:18px;background:#111113;border-radius:14px;padding:14px 16px}
+.pw-fill{height:100%;border-radius:1px;transition:width 1s}
+.g66-full{margin-top:16px;background:#111113;border-radius:14px;padding:14px 16px}
 .g66-full-meta{display:flex;justify-content:space-between;font-size:10px;color:#2a2a2a;letter-spacing:2px;margin-bottom:8px}
 .g66-track{width:100%;height:2px;background:#191919;border-radius:1px;margin-top:8px}
 .g66-fill{height:100%;border-radius:1px;transition:width 1s}
-.r-line{text-align:center;margin-top:12px;font-size:10px;color:#1e1e1e;letter-spacing:1px;min-height:12px}
-.btn-cal{width:100%;background:#111113;border-radius:14px;padding:15px 0;cursor:pointer;color:#444;font-family:'Lilita One',cursive;font-size:15px;letter-spacing:1px;margin-top:18px;border:1px solid #1a1a1a;transition:background .15s}
-.btn-cal:active{background:#161618}
-.btn-urge{width:100%;background:#111113;border-radius:18px;padding:20px 0;cursor:pointer;color:#fff;font-family:'Lilita One',cursive;font-size:18px;letter-spacing:1px;margin-top:10px;border:1px solid;transition:background .15s;display:flex;align-items:center;justify-content:center;gap:10px}
-.btn-urge:active{background:#161618}
-.btn-rst{background:transparent;border:1px solid #141414;border-radius:12px;padding:12px 28px;cursor:pointer;color:#1e1e1e;font-family:'Lilita One',cursive;font-size:12px;letter-spacing:2px;margin-top:8px;align-self:center}
 
-.cal-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;margin-top:10px}
+/* CORRELATION */
+.corr-box{background:#111113;border-radius:14px;padding:14px 16px;margin-top:14px;border:1px solid #1a1a1a}
+.corr-title{font-size:10px;color:#f97316;letter-spacing:3px;margin-bottom:10px}
+.corr-item{font-size:11px;color:#444;letter-spacing:1px;line-height:1.9;padding-left:10px;border-left:2px solid #f9731640}
+.corr-item+.corr-item{margin-top:6px}
+
+.r-line{text-align:center;margin-top:10px;font-size:10px;color:#1e1e1e;letter-spacing:1px;min-height:12px}
+.btn-cal{width:100%;background:#111113;border-radius:14px;padding:15px;cursor:pointer;color:#444;font-family:'Lilita One',cursive;font-size:15px;letter-spacing:1px;margin-top:18px;border:1px solid #1a1a1a}
+.btn-urge{width:100%;background:#111113;border-radius:18px;padding:20px;cursor:pointer;color:#fff;font-family:'Lilita One',cursive;font-size:18px;letter-spacing:1px;margin-top:10px;border:1px solid #222}
+.btn-rst{background:transparent;border:1px solid #141414;border-radius:12px;padding:12px 28px;cursor:pointer;color:#1e1e1e;font-family:'Lilita One',cursive;font-size:12px;letter-spacing:2px;margin-top:8px;align-self:center}
+.ibtn{background:transparent;border:none;cursor:pointer;padding:10px;font-size:22px;color:#363636;font-family:inherit;line-height:1}
+.ibtn.danger{color:#ef4444}
+
+/* CALENDAR */
+.cal-body{padding:0 22px 80px}
+.cal-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;margin-top:8px}
 .cal-m{font-size:14px;letter-spacing:3px}
-.cal-leg{display:flex;align-items:center;gap:5px;font-size:9px;color:#333;letter-spacing:1px}
-.leg-d{width:7px;height:7px;border-radius:50%;background:#ef4444;flex-shrink:0}
+.cal-legends{display:flex;gap:12px}
+.cal-leg{display:flex;align-items:center;gap:4px;font-size:9px;color:#333;letter-spacing:1px}
+.leg-d{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .cal-wk{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:9px;color:#222;letter-spacing:1px;margin-bottom:4px}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
-.cd{height:36px;display:flex;align-items:center;justify-content:center;font-size:12px;border-radius:8px;color:#1c1c1c;cursor:default}
-.cd.past{color:#555}
-.cd.today{background:#1c1c1c;color:#fff}
-.cd.crv{background:#ef444415;color:#ef4444;border:1px solid #ef444428;cursor:pointer}
-.cd.crv:active{background:#ef444428}
-.crv-detail{background:#0f0606;border:1px solid #ef444428;border-radius:14px;padding:16px 18px;margin-top:14px;animation:su .2s ease}
-@keyframes su{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
-.crv-date{font-size:9px;color:#ef4444;letter-spacing:3px;margin-bottom:6px}
-.crv-title{font-size:16px;margin-bottom:4px}
-.crv-ph{font-size:9px;color:#f97316;letter-spacing:2px;margin-bottom:10px}
-.crv-txt{font-size:12px;color:#444;line-height:1.9;margin-bottom:8px}
-.crv-ref{font-size:9px;color:#282828;letter-spacing:1px;line-height:1.7;border-top:1px solid #191919;padding-top:8px;margin-bottom:12px}
-.btn-crvclose{background:transparent;border:1px solid #200a0a;color:#ef444455;border-radius:8px;padding:7px 18px;cursor:pointer;font-family:'Lilita One',cursive;font-size:11px;letter-spacing:1px}
+.cd{height:38px;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:8px;color:#1c1c1c}
+.cd.past{color:#555}.cd.today{background:#1c1c1c;color:#fff}
+.cd.crv{background:#ef444415;color:#ef4444;border:1px solid #ef444430;cursor:pointer}
+.cd.rel{background:#f9731620;color:#f97316;border:1px solid #f9731640;cursor:pointer}
+.crv-detail{background:#0f0606;border:1px solid #ef444428;border-radius:14px;padding:16px 18px;margin-top:14px}
+.rel-detail{background:#0a0600;border:1px solid #f9731630;border-radius:14px;padding:16px 18px;margin-top:14px}
+.det-date{font-size:9px;letter-spacing:3px;margin-bottom:6px}
+.det-title{font-size:16px;margin-bottom:4px}
+.det-ph{font-size:9px;letter-spacing:2px;margin-bottom:10px}
+.det-bio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+.det-bio-item{background:#111113;border-radius:10px;padding:10px;text-align:center}
+.det-bio-val{font-size:16px;letter-spacing:1px}
+.det-bio-lbl{font-size:9px;color:#333;letter-spacing:1px;margin-top:2px}
+.det-txt{font-size:12px;color:#444;line-height:1.9;margin-bottom:8px}
+.det-ref{font-size:9px;color:#282828;letter-spacing:1px;border-top:1px solid #191919;padding-top:8px;margin-bottom:12px}
+.btn-detclose{background:transparent;border-radius:8px;padding:7px 18px;cursor:pointer;font-family:'Lilita One',cursive;font-size:11px;border:1px solid #1a1a1a;color:#444}
 
+/* URGE */
+.urge-body{padding:0 22px 60px;display:flex;flex-direction:column;flex:1}
 .cc{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:16px}
 .big-lbl{font-size:12px;color:#444;letter-spacing:5px}
 .u-time{font-size:80px;color:#fff;line-height:1;letter-spacing:-2px}
 .art-card{background:#111113;border-radius:14px;padding:14px 16px;width:100%;border:1px solid #1a1a1a}
 .art-title{font-size:11px;color:#555;letter-spacing:2px;margin-bottom:8px}
 .art-txt{font-size:12px;color:#3a3a3a;line-height:1.9;margin-bottom:8px}
-.art-ref{font-size:9px;color:#242424;letter-spacing:1px;line-height:1.7;border-top:1px solid #191919;padding-top:8px}
+.art-ref{font-size:9px;color:#242424;letter-spacing:1px;border-top:1px solid #191919;padding-top:8px}
 .u-hint{color:#2a2a2a;font-size:13px;text-align:center;line-height:1.9}
-.btn-begin{border:none;border-radius:14px;padding:14px 40px;font-family:'Lilita One',cursive;font-size:17px;cursor:pointer;color:#09090b;transition:opacity .15s}
-.btn-begin:active{opacity:.85}
+.btn-begin{border:none;border-radius:14px;padding:14px 40px;font-family:'Lilita One',cursive;font-size:17px;cursor:pointer;color:#09090b}
 .u-done{font-size:20px;color:#22c55e;letter-spacing:2px;display:none}
 .btn-close{background:transparent;border:1px solid #1a1a1a;color:#333;border-radius:10px;padding:9px 26px;cursor:pointer;font-family:'Lilita One',cursive;font-size:13px}
 
-.big-q{font-size:12px;color:#444;letter-spacing:3px}
-.sm-q{color:#222;font-size:11px;letter-spacing:1px}
-.sg{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;margin-top:4px}
-.bst{background:#111113;border:1px solid #1e1e1e;border-radius:16px;padding:20px 12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px}
-.bst:active{background:#16161a}
-.bst-i{font-size:20px;color:#4a4a4a}
-.bst-l{font-family:'Lilita One',cursive;color:#fff;font-size:14px}
-.btn-can{background:transparent;border:1px solid #181818;color:#282828;border-radius:10px;padding:9px 26px;cursor:pointer;font-family:'Lilita One',cursive;font-size:13px}
+/* RESET */
+.rst-body{padding:20px 22px 60px;display:flex;flex-direction:column;gap:18px;flex:1}
+.rst-sec-title{font-size:10px;color:#333;letter-spacing:3px;margin-bottom:8px}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bst{background:#111113;border:1px solid #1e1e1e;border-radius:14px;padding:16px 12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;transition:border-color .2s}
+.bst.sel{border-color:#f97316}
+.bst-i{font-size:20px;color:#4a4a4a}.bst-l{font-family:'Lilita One',cursive;color:#fff;font-size:13px}
 
-.mile-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:12px;text-align:center}
+.turno-row{display:flex;align-items:center;justify-content:space-between;background:#111113;border-radius:14px;padding:14px 18px;border:1px solid #1a1a1a}
+.turno-lbl{font-size:11px;color:#444;letter-spacing:2px}
+.turno-btns{display:flex;gap:8px}
+.tbtn{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:8px 16px;cursor:pointer;font-family:'Lilita One',cursive;font-size:12px;color:#444;letter-spacing:1px}
+.tbtn.sel{background:#f9731620;border-color:#f97316;color:#f97316}
+
+.bio-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bio-field{background:#111113;border-radius:14px;padding:14px 16px;border:1px solid #1a1a1a}
+.bio-field label{font-size:9px;color:#333;letter-spacing:3px;display:block;margin-bottom:8px}
+.bio-field input{width:100%;background:transparent;border:none;outline:none;color:#fff;font-family:'Lilita One',cursive;font-size:24px;-webkit-appearance:none;appearance:none}
+.bio-field input::placeholder{color:#2a2a2a}
+.bio-unit{font-size:10px;color:#333;letter-spacing:2px;margin-top:4px}
+
+.btn-confirm{width:100%;background:#f97316;border:none;border-radius:16px;padding:18px;cursor:pointer;color:#09090b;font-family:'Lilita One',cursive;font-size:18px;letter-spacing:1px;margin-top:4px}
+.btn-can-rst{background:transparent;border:1px solid #181818;color:#282828;border-radius:10px;padding:9px 26px;cursor:pointer;font-family:'Lilita One',cursive;font-size:13px;align-self:center}
+
+/* MILESTONE */
+.mile-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:12px;text-align:center;padding:40px 22px}
 .mile-pre{font-size:10px;color:#333;letter-spacing:5px}
-.mile-n{font-size:88px;line-height:1}
-.mile-title{font-size:24px;letter-spacing:3px;margin-top:-6px}
-.mile-desc{font-size:12px;color:#3a3a3a;letter-spacing:1px;margin-top:4px;line-height:1.9;max-width:280px;white-space:pre-line}
-.btn-mile{border:none;border-radius:14px;padding:14px 40px;font-family:'Lilita One',cursive;font-size:17px;cursor:pointer;color:#09090b;margin-top:20px;letter-spacing:1px}
-@keyframes popin{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
-#sc-milestone.on .mile-n{animation:popin .5s cubic-bezier(.34,1.56,.64,1) both}
-#sc-milestone.on .mile-title{animation:popin .5s .1s cubic-bezier(.34,1.56,.64,1) both}
+.mile-n{font-size:88px;line-height:1}.mile-title{font-size:24px;letter-spacing:3px}
+.mile-desc{font-size:12px;color:#3a3a3a;letter-spacing:1px;line-height:1.9;max-width:280px;white-space:pre-line}
+.btn-mile{border:none;border-radius:14px;padding:14px 40px;font-family:'Lilita One',cursive;font-size:17px;cursor:pointer;color:#09090b;margin-top:16px;background:#f97316}
 </style>
 </head>
 <body>
-<div id="app">
 
+<!-- CARDS -->
 <div id="sc-cards" class="scr on">
+  <div class="home-bar">
+    <div class="home-corp">MAX.CORE</div>
+    <div class="home-date" id="home-date"></div>
+  </div>
   <div class="logo">
-    <div class="logo-corp">MAX.CORE</div>
     <span class="logo-name" data-t="BREAKING">BREAKING</span>
     <div class="logo-sub">the habit</div>
   </div>
   <div class="add-row">
-    <input type="text" id="vi" placeholder="o que eliminar?" autocomplete="off">
+    <input type="text" id="vi" placeholder="o que eliminar?">
     <button class="btn-plus" id="badd">+</button>
   </div>
   <div id="clist" class="card-list"></div>
-  <div id="emp" class="empty"><span class="e-sym">&#8709;</span><div class="e-txt">O QUE VOCÊ VAI ELIMINAR?</div></div>
+  <div id="emp" class="empty">
+    <span class="e-sym">&#8709;</span>
+    <div class="e-txt">O QUE VOCÊ VAI ELIMINAR?</div>
+  </div>
 </div>
 
+<!-- COUNTER -->
 <div id="sc-counter" class="scr">
-  <div class="hdr">
-    <button class="ibtn" id="bbk">&#8592;</button>
-    <div class="hdr-lbl">BREAKING</div>
-    <button class="ibtn" id="bdl">&#10005;</button>
+  <div class="mc-hdr">
+    <div class="mc-brand">
+      <span class="mc-icon">&#9889;</span>
+      <div><div class="mc-corp">MAX.CORE</div><div class="mc-app">BREAKING</div></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div class="mc-date" id="cnt-date"></div>
+      <button class="ibtn" id="bdl">&#10005;</button>
+    </div>
   </div>
-  <div id="cnt-name" class="cnt-name"></div>
-  <div id="cnt-days" class="cnt-n">0</div>
-  <div id="cnt-dl" class="cnt-dl">DIAS</div>
-  <div id="cnt-h" class="cnt-h">+0h</div>
-  <div style="text-align:center"><span id="ptag" class="ptag"></span></div>
-  <div class="pw">
-    <div class="pw-lbls"><span id="pcur">DIA 0</span><span id="pnxt">DIA 3 &#8594;</span></div>
-    <div class="pw-track"><div id="pfill" class="pw-fill" style="width:0%"></div></div>
+  <div class="cnt-body">
+    <div id="cnt-name" class="cnt-name"></div>
+    <div id="cnt-days" class="cnt-n">0</div>
+    <div id="cnt-dl" class="cnt-dl">DIAS</div>
+    <div id="cnt-h" class="cnt-h">+0h</div>
+    <div style="text-align:center"><span id="ptag" class="ptag"></span></div>
+    <div class="pw">
+      <div class="pw-lbls"><span id="pcur">DIA 0</span><span id="pnxt">DIA 3 &#8594;</span></div>
+      <div class="pw-track"><div id="pfill" class="pw-fill" style="width:0%"></div></div>
+    </div>
+    <div class="g66-full">
+      <div class="g66-full-meta"><span>GRADE 66 DIAS</span><span id="g66cnt" style="color:#f97316">0 / 66</span></div>
+      <div class="g66" id="g66full"></div>
+      <div class="g66-track"><div class="g66-fill" id="g66fill" style="width:0%"></div></div>
+    </div>
+    <div id="corr-box"></div>
+    <div id="rline" class="r-line"></div>
+    <button id="btn-back" class="btn-cal" style="color:#555">&#8592; VOLTAR</button>
+    <button id="btn-cal" class="btn-cal">&#128197; CALENDÁRIO</button>
+    <button id="btn-urge" class="btn-urge">&#12316; TÔ QUERENDO</button>
+    <button id="btn-rst" class="btn-rst">REGISTRAR RECAÍDA</button>
   </div>
-  <div class="g66-full-wrap">
-    <div class="g66-full-meta"><span>GRADE 66 DIAS</span><span id="g66cnt" style="color:#f97316">0 / 66</span></div>
-    <div class="g66" id="g66full"></div>
-    <div class="g66-track"><div class="g66-fill" id="g66fill" style="width:0%"></div></div>
-  </div>
-  <div id="rline" class="r-line"></div>
-  <button id="btn-cal" class="btn-cal">&#128197;&nbsp; CALENDÁRIO</button>
-  <button id="btn-urge" class="btn-urge" style="border-color:#222">&#12316;&nbsp; TÔ QUERENDO</button>
-  <button id="btn-rst" class="btn-rst">RESETAR</button>
 </div>
 
+<!-- CALENDAR -->
 <div id="sc-cal" class="scr">
-  <div class="hdr">
-    <button class="ibtn" id="cal-bk">&#8592;</button>
-    <div class="hdr-lbl">BREAKING</div>
-    <div style="width:38px"></div>
+  <div class="mc-hdr">
+    <div class="mc-brand">
+      <span class="mc-icon">&#9889;</span>
+      <div><div class="mc-corp">MAX.CORE</div><div class="mc-app">BREAKING</div></div>
+    </div>
+    <div class="mc-date" id="cal-date"></div>
   </div>
-  <div class="cal-hdr">
-    <span class="cal-m" id="cal-month">JUNHO 2026</span>
-    <div class="cal-leg"><div class="leg-d"></div><span>ABSTINÊNCIA</span></div>
+  <div class="cal-body">
+    <div class="cal-hdr">
+      <span class="cal-m" id="cal-month">JUNHO 2026</span>
+      <div class="cal-legends">
+        <div class="cal-leg"><div class="leg-d" style="background:#ef4444"></div><span>CRAVING</span></div>
+        <div class="cal-leg"><div class="leg-d" style="background:#f97316"></div><span>RECAÍDA</span></div>
+      </div>
+    </div>
+    <div class="cal-wk"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div id="crv-slot"></div>
+    <button id="cal-bk" class="btn-cal" style="margin-top:20px;color:#555">&#8592; VOLTAR</button>
   </div>
-  <div class="cal-wk"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div>
-  <div class="cal-grid" id="cal-grid"></div>
-  <div id="crv-slot"></div>
 </div>
 
+<!-- URGE -->
 <div id="sc-urge" class="scr">
-  <div class="hdr"><div style="width:38px"></div><div class="hdr-lbl">BREAKING</div><div style="width:38px"></div></div>
-  <div class="cc">
-    <div class="big-lbl">RESPIRA</div>
-    <div id="utmr" class="u-time">10:00</div>
-    <div class="art-card">
-      <div class="art-title" id="art-title">---</div>
-      <div class="art-txt" id="art-txt"></div>
-      <div class="art-ref" id="art-ref"></div>
+  <div class="mc-hdr">
+    <div class="mc-brand">
+      <span class="mc-icon">&#9889;</span>
+      <div><div class="mc-corp">MAX.CORE</div><div class="mc-app">BREAKING</div></div>
     </div>
-    <div class="u-hint">a vontade passa sozinha<br>só espera</div>
-    <button id="bbegin" class="btn-begin" style="background:#f97316">COMEÇAR</button>
-    <div id="udone" class="u-done">PASSOU &#10003;</div>
-    <button id="bcl" class="btn-close">fechar</button>
+    <div class="mc-date" id="urge-date"></div>
+  </div>
+  <div class="urge-body">
+    <div class="cc">
+      <div class="big-lbl">RESPIRA</div>
+      <div id="utmr" class="u-time">10:00</div>
+      <div class="art-card">
+        <div class="art-title" id="art-title">---</div>
+        <div class="art-txt" id="art-txt"></div>
+        <div class="art-ref" id="art-ref"></div>
+      </div>
+      <div class="u-hint">a vontade passa sozinha<br>só espera</div>
+      <button id="bbegin" class="btn-begin">COMEÇAR</button>
+      <div id="udone" class="u-done">PASSOU &#10003;</div>
+      <button id="bcl" class="btn-close">fechar</button>
+    </div>
   </div>
 </div>
 
+<!-- RESET -->
 <div id="sc-reset" class="scr">
-  <div class="hdr"><div style="width:38px"></div><div class="hdr-lbl">BREAKING</div><div style="width:38px"></div></div>
-  <div class="cc">
-    <div class="big-q">O QUE ACONTECEU?</div>
-    <div class="sm-q">sem julgamento &#8212; é só dado</div>
-    <div class="sg">
-      <button class="bst" data-s="tired"><span class="bst-i">&#9790;</span><span class="bst-l">cansado</span></button>
-      <button class="bst" data-s="stressed"><span class="bst-i">&#9889;</span><span class="bst-l">estressado</span></button>
-      <button class="bst" data-s="social"><span class="bst-i">&#127867;</span><span class="bst-l">social</span></button>
-      <button class="bst" data-s="unknown"><span class="bst-i">&#10067;</span><span class="bst-l">não sei</span></button>
+  <div class="mc-hdr">
+    <div class="mc-brand">
+      <span class="mc-icon">&#9889;</span>
+      <div><div class="mc-corp">MAX.CORE</div><div class="mc-app">BREAKING</div></div>
     </div>
-    <button id="bcan" class="btn-can">cancelar</button>
+    <div class="mc-date" id="rst-date"></div>
+  </div>
+  <div class="rst-body">
+    <div>
+      <div class="rst-sec-title">O QUE ACONTECEU?</div>
+      <div class="sg" id="state-grid">
+        <button class="bst" data-s="tired"><span class="bst-i">&#9790;</span><span class="bst-l">cansado</span></button>
+        <button class="bst" data-s="stressed"><span class="bst-i">&#9889;</span><span class="bst-l">estressado</span></button>
+        <button class="bst" data-s="social"><span class="bst-i">&#127867;</span><span class="bst-l">social</span></button>
+        <button class="bst" data-s="unknown"><span class="bst-i">&#10067;</span><span class="bst-l">não sei</span></button>
+      </div>
+    </div>
+    <div class="turno-row">
+      <span class="turno-lbl">DIA DE TURNO?</span>
+      <div class="turno-btns">
+        <button class="tbtn" id="t-sim" onclick="selTurno(1)">SIM</button>
+        <button class="tbtn" id="t-nao" onclick="selTurno(0)">NÃO</button>
+      </div>
+    </div>
+    <div class="bio-row">
+      <div class="bio-field">
+        <label>RMSSD</label>
+        <input type="number" id="r-rmssd" placeholder="71">
+        <div class="bio-unit">ms</div>
+      </div>
+      <div class="bio-field">
+        <label>SONO</label>
+        <input type="number" id="r-sono" placeholder="6">
+        <div class="bio-unit">horas</div>
+      </div>
+    </div>
+    <div style="font-size:9px;color:#252525;letter-spacing:1px;text-align:center">sem julgamento — é só dado científico</div>
+    <button class="btn-confirm" id="bconf">CONFIRMAR RECAÍDA</button>
+    <button class="btn-can-rst" id="bcan">cancelar</button>
   </div>
 </div>
 
+<!-- MILESTONE -->
 <div id="sc-milestone" class="scr">
-  <div class="hdr"><div style="width:38px"></div><div class="hdr-lbl">BREAKING</div><div style="width:38px"></div></div>
+  <div class="mc-hdr">
+    <div class="mc-brand">
+      <span class="mc-icon">&#9889;</span>
+      <div><div class="mc-corp">MAX.CORE</div><div class="mc-app">BREAKING</div></div>
+    </div>
+    <div class="mc-date" id="mile-date"></div>
+  </div>
   <div class="mile-wrap">
     <div class="mile-pre">VOCÊ CHEGOU</div>
     <div id="m-n" class="mile-n">7</div>
     <div id="m-title" class="mile-title">1 SEMANA</div>
     <div id="m-desc" class="mile-desc"></div>
-    <button id="m-ok" class="btn-mile" style="background:#f97316">SEGUIR EM FRENTE</button>
+    <button id="m-ok" class="btn-mile">SEGUIR EM FRENTE</button>
   </div>
 </div>
 
-</div>
 <script>
-const PH=[
-  {min:0,label:'COMEÇANDO',c:'#ef4444'},
-  {min:4,label:'PASSANDO O PICO',c:'#f97316'},
-  {min:7,label:'1 SEMANA',c:'#eab308'},
-  {min:14,label:'JANELA CRÍTICA',c:'#f97316'},
-  {min:30,label:'1 MÊS',c:'#22c55e'},
-  {min:66,label:'VIRANDO HÁBITO',c:'#3b82f6'},
-  {min:90,label:'NOVO BASELINE',c:'#8b5cf6'},
-  {min:180,label:'IDENTIDADE NOVA',c:'#ec4899'},
-  {min:365,label:'UM ANO LIVRE',c:'#ffd700'},
-];
+const PH=[{min:0,label:'COMEÇANDO',c:'#ef4444',msg:'72h de pico. o mais difícil.'},{min:4,label:'PASSANDO O PICO',c:'#f97316',msg:'receptores recalibrando.'},{min:7,label:'1 SEMANA',c:'#eab308',msg:'loop enfraquecendo.'},{min:14,label:'JANELA CRÍTICA',c:'#f97316',msg:'cérebro testando você hoje.'},{min:30,label:'1 MÊS',c:'#22c55e',msg:'identidade mudando.'},{min:66,label:'VIRANDO HÁBITO',c:'#3b82f6',msg:'automatizando.'},{min:90,label:'NOVO BASELINE',c:'#8b5cf6',msg:'novo padrão estabelecendo.'},{min:180,label:'IDENTIDADE NOVA',c:'#ec4899',msg:'você simplesmente é assim.'},{min:365,label:'UM ANO LIVRE',c:'#ffd700',msg:'loop antigo morreu.'}];
 const MS=[3,7,14,30,66,90,180,365];
 const CLR=['#f97316','#3b82f6','#22c55e','#ef4444','#8b5cf6','#ec4899','#eab308','#06b6d4'];
-const MILES=[
-  {day:3,title:'3 DIAS',desc:'O pico de abstinência física passou.\nSeu sistema nervoso já está se reorganizando.'},
-  {day:7,title:'1 SEMANA',desc:'Primeira semana completa.\nOs receptores de dopamina começam a se recuperar.'},
-  {day:14,title:'14 DIAS',desc:'Janela crítica superada.\nEsse era o momento de maior risco — você passou.'},
-  {day:30,title:'1 MÊS',desc:'Um mês inteiro.\nSua identidade começa a mudar de verdade.'},
-  {day:66,title:'66 DIAS',desc:'Automatização iniciada.\nEstudo Lally — o comportamento começa a ser automático.'},
-  {day:90,title:'90 DIAS',desc:'Novo baseline dopaminérgico.\nSeu cérebro estabeleceu um novo padrão.'},
-  {day:180,title:'6 MESES',desc:'Identidade nova consolidada.\nVocê não está tentando — você simplesmente é assim.'},
-  {day:365,title:'1 ANO',desc:'Um ano inteiro livre.\nIsso não é força de vontade. É quem você é agora.'},
-];
-const ARTS=[
-  {min:0,title:'PICO DE ABSTINÊNCIA',text:'O que você sente agora é químico — não é fraqueza. O sistema nervoso autônomo está se reorganizando. O pico dura 72h e passa.',ref:'Koob & Volkow, 2010 — Neurocircuitry of addiction — Neuropsychopharmacology'},
-  {min:4,title:'RECALIBRANDO',text:'Os receptores de dopamina estão se recalibrando. Cada hora que você resiste enfraquece o loop antigo e fortalece o novo padrão neural.',ref:'Nestler, 2001 — Molecular basis of long-term plasticity — Nature Reviews Neuroscience'},
-  {min:7,title:'PADRÃO AUTOMÁTICO',text:'O hábito ainda está ativo mas a frequência das urgências já cai. Seu córtex pré-frontal está ganhando terreno sobre o gânglio basal.',ref:'Everitt & Robbins, 2005 — Neural systems of reinforcement — Nature Reviews Neuroscience'},
-  {min:14,title:'JANELA CRÍTICA',text:'Dias 14-30 têm maior risco de recaída. O cérebro testa se o loop voltou. Cada resistência fortalece o circuito de controle sobre o de impulso.',ref:'Marlatt & Gordon, 1985 — Relapse Prevention — Behavioral Analysis'},
-  {min:30,title:'DOPAMINA RECALIBRANDO',text:'A urgência que você sente dura em média 10-20 minutos se você não age. O sistema de recompensa está se reequilibrando.',ref:'Lally et al., 2010 — How habits are formed — European Journal of Social Psychology'},
-  {min:66,title:'AUTOMATIZAÇÃO',text:'O novo padrão começa a competir com o loop antigo em igualdade. O gânglio basal está registrando o comportamento novo.',ref:'Wood & Neal, 2007 — A new look at habits — Psychological Bulletin'},
-  {min:90,title:'NOVO BASELINE',text:'Seu sistema dopaminérgico estabeleceu um novo patamar. A urgência que sente é o eco de um padrão antigo que está morrendo.',ref:'Volkow et al., 2012 — Neurobiologic advances — JAMA Psychiatry'},
-  {min:180,title:'IDENTIDADE NOVA',text:'Você não está mais tentando parar. A neuroplasticidade consolidou um novo padrão de identidade.',ref:'Doidge, 2007 — The Brain That Changes Itself — Viking Press'},
-];
-
 const MONTHS=['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO','SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO'];
+const DIAS_PT=['DOM.','SEG.','TER.','QUA.','QUI.','SEX.','SÁB.'];
+const MESES_PT=['JAN.','FEV.','MAR.','ABR.','MAI.','JUN.','JUL.','AGO.','SET.','OUT.','NOV.','DEZ.'];
+const MILES=[{day:3,title:'3 DIAS',desc:'O pico de abstinência física passou.\nSeu sistema nervoso já está se reorganizando.'},{day:7,title:'1 SEMANA',desc:'Primeira semana completa.\nOs receptores de dopamina começam a se recuperar.'},{day:14,title:'14 DIAS',desc:'Janela crítica superada.\nEsse era o momento de maior risco — você passou.'},{day:30,title:'1 MÊS',desc:'Um mês inteiro.\nSua identidade começa a mudar de verdade.'},{day:66,title:'66 DIAS',desc:'Automatização iniciada.\nEstudo Lally — o comportamento começa a ser automático.'},{day:90,title:'90 DIAS',desc:'Novo baseline dopaminérgico.\nSeu cérebro estabeleceu um novo padrão.'},{day:180,title:'6 MESES',desc:'Identidade nova consolidada.\nVocê não está tentando — você simplesmente é assim.'},{day:365,title:'1 ANO',desc:'Um ano inteiro livre.\nIsso não é força de vontade. É quem você é agora.'}];
+const ARTS=[{min:0,title:'PICO DE ABSTINÊNCIA',text:'O que você sente agora é químico — não é fraqueza. O sistema nervoso autônomo está se reorganizando. O pico dura 72h e passa.',ref:'Koob & Volkow, 2010 — Neurocircuitry of addiction — Neuropsychopharmacology'},{min:4,title:'RECALIBRANDO',text:'Os receptores de dopamina estão se recalibrando. Cada hora que você resiste enfraquece o loop antigo e fortalece o novo padrão neural.',ref:'Nestler, 2001 — Molecular basis of long-term plasticity — Nature Reviews Neuroscience'},{min:7,title:'PADRÃO AUTOMÁTICO',text:'O hábito ainda está ativo mas a frequência das urgências já cai. Seu córtex pré-frontal está ganhando terreno sobre o gânglio basal.',ref:'Everitt & Robbins, 2005 — Neural systems of reinforcement — Nature Reviews Neuroscience'},{min:14,title:'JANELA CRÍTICA',text:'Dias 14-30 têm maior risco de recaída. O cérebro testa se o loop voltou. Cada resistência fortalece o circuito de controle.',ref:'Marlatt & Gordon, 1985 — Relapse Prevention — Behavioral Analysis'},{min:30,title:'DOPAMINA RECALIBRANDO',text:'A urgência dura em média 10-20 minutos se você não age. O sistema de recompensa está se reequilibrando.',ref:'Lally et al., 2010 — How habits are formed — European Journal of Social Psychology'},{min:66,title:'AUTOMATIZAÇÃO',text:'O novo padrão começa a competir com o loop antigo em igualdade. O gânglio basal está registrando o comportamento novo.',ref:'Wood & Neal, 2007 — A new look at habits — Psychological Bulletin'},{min:90,title:'NOVO BASELINE',text:'Seu sistema dopaminérgico estabeleceu um novo patamar. A urgência é o eco de um padrão antigo que está morrendo.',ref:'Volkow et al., 2012 — Neurobiologic advances — JAMA Psychiatry'},{min:180,title:'IDENTIDADE NOVA',text:'Você não está mais tentando parar. A neuroplasticidade consolidou um novo padrão de identidade.',ref:'Doidge, 2007 — The Brain That Changes Itself — Viking Press'}];
+
 let vices=[],selId=null,urgeIv=null,urgeT=600,urgeOn=false,dblDel=false,dblTmr=null,mQueue=[];
+let selState=null,selTurnoVal=null;
 const $=id=>document.getElementById(id);
 
-function load(){try{vices=JSON.parse(localStorage.getItem('bh_v1')||'[]')}catch{vices=[]}}
-function save(){localStorage.setItem('bh_v1',JSON.stringify(vices))}
+function load(){try{vices=JSON.parse(localStorage.getItem('bh_v3')||'[]')}catch{vices=[]}}
+function save(){localStorage.setItem('bh_v3',JSON.stringify(vices))}
 function dSince(s){return Math.floor((Date.now()-new Date(s))/86400000)}
 function hSince(s){return Math.floor(((Date.now()-new Date(s))%86400000)/3600000)}
 function getPhase(d){let p=PH[0];for(const x of PH)if(d>=x.min)p=x;return p}
 function getNext(d){return MS.find(m=>m>d)||365}
 function getArt(d){let a=ARTS[0];for(const x of ARTS)if(d>=x.min)a=x;return a}
 
-function pendingMiles(v){const d=dSince(v.start),acked=v.milestones||[];return MILES.filter(m=>m.day<=d&&!acked.includes(m.day))}
-function ackMile(vId,day){vices=vices.map(v=>v.id!==vId?v:{...v,milestones:[...(v.milestones||[]),day]});save()}
-function checkAll(){
-  mQueue=[];
-  for(const v of vices)for(const m of pendingMiles(v))mQueue.push({...m,viceId:v.id,color:v.color});
-  if(mQueue.length)showNextMile();
+function fmtDate(){
+  const n=new Date();
+  return DIAS_PT[n.getDay()]+', '+String(n.getDate()).padStart(2,'0')+' DE\n'+MESES_PT[n.getMonth()];
 }
+function setDates(){
+  const d=fmtDate();
+  ['home-date','cnt-date','cal-date','urge-date','rst-date','mile-date'].forEach(id=>{
+    const el=$(id);if(el)el.textContent=d;
+  });
+}
+
+function pendingMiles(v){const d=dSince(v.start),ak=v.milestones||[];return MILES.filter(m=>m.day<=d&&!ak.includes(m.day))}
+function ackMile(vId,day){vices=vices.map(v=>v.id!==vId?v:{...v,milestones:[...(v.milestones||[]),day]});save()}
+function checkAll(){mQueue=[];for(const v of vices)for(const m of pendingMiles(v))mQueue.push({...m,viceId:v.id,color:v.color});if(mQueue.length)showNextMile()}
 function showNextMile(){
   if(!mQueue.length)return;
   const m=mQueue.shift();
@@ -307,6 +394,7 @@ function show(name){
   if(name==='counter')updateCnt();
   if(name==='cards'){renderCards();checkAll()}
   if(name==='cal')buildCal();
+  if(name==='reset'){selState=null;selTurnoVal=null;resetRstForm()}
 }
 
 function addVice(){
@@ -316,13 +404,39 @@ function addVice(){
   save();renderCards();inp.value='';inp.focus();
 }
 
-function buildGrid(el,days,color){
+function buildGrid(el,days,color,relapses,startIso){
   el.innerHTML='';el.style.setProperty('--vc',color);
+  const st=new Date(startIso).getTime();
+  const rDays=new Set((relapses||[]).map(r=>Math.floor((new Date(r.date)-st)/86400000)+1));
   for(let i=1;i<=66;i++){
     const s=document.createElement('div');
-    s.className='sq'+(i<days?' done':i===days?' now':'');
+    if(rDays.has(i))s.className='sq relapsed';
+    else if(i<days)s.className='sq done';
+    else if(i===days)s.className='sq now';
+    else s.className='sq';
     el.appendChild(s);
   }
+}
+
+function getCorrelations(v){
+  const r=v.relapses||[];
+  if(r.length<3)return null;
+  const results=[];
+  const total=r.length;
+  const turnoR=r.filter(x=>x.turno);
+  if(turnoR.length>=2)results.push(turnoR.length+' de '+total+' recaídas em dia de turno');
+  const withR=r.filter(x=>x.rmssd);
+  if(withR.length>=2){
+    const avg=withR.reduce((a,b)=>a+b.rmssd,0)/withR.length;
+    const low=withR.filter(x=>x.rmssd<avg);
+    if(low.length>=2)results.push(low.length+' de '+withR.length+' com RMSSD abaixo de '+Math.round(avg)+'ms');
+  }
+  const withS=r.filter(x=>x.sono);
+  if(withS.length>=2){
+    const low=withS.filter(x=>x.sono<6);
+    if(low.length>=2)results.push(low.length+' de '+withS.length+' com menos de 6h de sono');
+  }
+  return results.length>0?results:null;
 }
 
 function renderCards(){
@@ -331,13 +445,14 @@ function renderCards(){
   emp.style.display='none';list.innerHTML='';
   vices.forEach(v=>{
     const d=dSince(v.start),ph=getPhase(d),c=v.color;
+    const rl=v.relapses||[];
     const card=document.createElement('div');
     card.className='vc';
-    card.style.cssText=`border-top:1px solid ${c}22;border-right:1px solid ${c}22;border-bottom:1px solid ${c}22;border-left:4px solid ${c}`;
+    card.style.cssText='border-top:1px solid '+c+'22;border-right:1px solid '+c+'22;border-bottom:1px solid '+c+'22;border-left:4px solid '+c;
     card.onclick=()=>openVice(v.id);
-    card.innerHTML=`<div class="vc-top"><div><div class="vc-name">${v.name}</div><div class="vc-phase" style="color:${ph.c}">${ph.label}</div></div><div><div class="vc-days-big" style="color:${c}">${d}</div><div class="vc-days-lbl">${d===1?'DIA':'DIAS'}</div></div></div><div class="g66-wrap"><div class="g66-meta"><span>66 DIAS</span><span style="color:${c}">${Math.min(d,66)} / 66</span></div><div class="g66" id="gc-${v.id}"></div></div>`;
+    card.innerHTML='<div class="vc-top"><div><div class="vc-name">'+v.name+'</div><div class="vc-phase" style="color:'+ph.c+'">'+ph.label+'</div><div class="vc-msg">'+ph.msg+'</div></div><div class="vc-right"><div class="vc-days-big" style="color:'+c+'">'+d+'</div><div class="vc-days-lbl">'+(d===1?'DIA':'DIAS')+'</div>'+(rl.length?'<div class="vc-relapse-mini">'+rl.length+' recaída'+(rl.length>1?'s':'')+'</div>':'')+'</div></div><div class="g66-wrap"><div class="g66-meta"><span>66 DIAS</span><span style="color:'+c+'">'+Math.min(d,66)+' / 66</span></div><div class="g66" id="gc-'+v.id+'"></div></div>';
     list.appendChild(card);
-    buildGrid(document.getElementById('gc-'+v.id),d,c);
+    buildGrid(document.getElementById('gc-'+v.id),d,c,rl,v.start);
   });
 }
 
@@ -346,23 +461,29 @@ function openVice(id){selId=id;show('counter')}
 function updateCnt(){
   const v=vices.find(x=>x.id===selId);if(!v)return;
   const d=dSince(v.start),h=hSince(v.start),ph=getPhase(d),nx=getNext(d),pct=Math.min(d/nx*100,100);
+  const rl=v.relapses||[];
   $('cnt-name').textContent=v.name;$('cnt-name').style.color=v.color;
   $('cnt-days').textContent=d;$('cnt-dl').textContent=d===1?'DIA':'DIAS';
   $('cnt-h').textContent='+'+h+'h';
   const pt=$('ptag');pt.textContent=ph.label;pt.style.color=ph.c;pt.style.background=ph.c+'1a';pt.style.borderColor=ph.c+'44';
-  $('pcur').textContent='DIA '+d;$('pnxt').textContent='DIA '+nx+' \u2192';
+  $('pcur').textContent='DIA '+d;$('pnxt').textContent='DIA '+nx+' →';
   $('pfill').style.width=pct+'%';$('pfill').style.background=v.color;
-  $('btn-urge').style.borderColor=v.color+'44';
   $('g66cnt').textContent=Math.min(d,66)+' / 66';$('g66cnt').style.color=v.color;
   $('g66fill').style.width=Math.min(d/66*100,100)+'%';$('g66fill').style.background=v.color;
-  buildGrid($('g66full'),d,v.color);
-  $('rline').textContent=v.relapses.length?v.relapses.length+' RECAÍDA'+(v.relapses.length>1?'S':'')+' — VOCÊ VOLTOU':'';
+  buildGrid($('g66full'),d,v.color,rl,v.start);
+  $('btn-urge').style.borderColor=v.color+'44';
+  $('rline').textContent=rl.length?rl.length+' RECAÍDA'+(rl.length>1?'S':'')+' — VOCÊ CONTINUA':'';
+  const corrs=getCorrelations(v);
+  const cb=$('corr-box');
+  if(corrs){
+    cb.innerHTML='<div class="corr-box"><div class="corr-title">PADRÃO IDENTIFICADO</div>'+corrs.map(c=>'<div class="corr-item">'+c+'</div>').join('')+'</div>';
+  }else cb.innerHTML='';
   resetDel();
 }
 
-function resetDel(){dblDel=false;clearTimeout(dblTmr);$('bdl').textContent='\u2715';$('bdl').classList.remove('danger')}
+function resetDel(){dblDel=false;clearTimeout(dblTmr);$('bdl').textContent='✕';$('bdl').classList.remove('danger')}
 function delVice(){
-  if(!dblDel){dblDel=true;$('bdl').textContent='\u2717';$('bdl').classList.add('danger');dblTmr=setTimeout(resetDel,3000)}
+  if(!dblDel){dblDel=true;$('bdl').textContent='✗';$('bdl').classList.add('danger');dblTmr=setTimeout(resetDel,3000)}
   else{resetDel();vices=vices.filter(x=>x.id!==selId);save();renderCards();show('cards')}
 }
 
@@ -370,34 +491,38 @@ function buildCal(){
   const v=vices.find(x=>x.id===selId);if(!v)return;
   const now=new Date(),yr=now.getFullYear(),mo=now.getMonth();
   $('cal-month').textContent=MONTHS[mo]+' '+yr;
-  const cDays=new Set();
-  (v.cravings||[]).forEach(c=>{const dd=new Date(c.date);if(dd.getFullYear()===yr&&dd.getMonth()===mo)cDays.add(dd.getDate())});
+  const cDays=new Map(),rDays=new Map();
+  (v.cravings||[]).forEach(c=>{const dd=new Date(c.date);if(dd.getFullYear()===yr&&dd.getMonth()===mo)cDays.set(dd.getDate(),c)});
+  (v.relapses||[]).forEach(r=>{const dd=new Date(r.date);if(dd.getFullYear()===yr&&dd.getMonth()===mo)rDays.set(dd.getDate(),r)});
   const grid=$('cal-grid');grid.innerHTML='';$('crv-slot').innerHTML='';
-  const offset=(new Date(yr,mo,1).getDay()+6)%7;
-  const dim=new Date(yr,mo+1,0).getDate(),tod=now.getDate();
+  const offset=(new Date(yr,mo,1).getDay()+6)%7,dim=new Date(yr,mo+1,0).getDate(),tod=now.getDate();
   for(let i=0;i<offset;i++){const c=document.createElement('div');c.className='cd';grid.appendChild(c)}
   for(let d=1;d<=dim;d++){
     const c=document.createElement('div');c.className='cd';c.textContent=d;
-    if(cDays.has(d)){
-      c.classList.add('crv');
-      const cv=(v.cravings||[]).find(x=>{const dd=new Date(x.date);return dd.getFullYear()===yr&&dd.getMonth()===mo&&dd.getDate()===d});
-      c.onclick=()=>showCrvDetail(d,cv,MONTHS[mo]);
-    }else if(d===tod)c.classList.add('today');
+    if(rDays.has(d)){c.classList.add('rel');c.onclick=()=>showRelDetail(d,rDays.get(d),MONTHS[mo])}
+    else if(cDays.has(d)){c.classList.add('crv');c.onclick=()=>showCrvDetail(d,cDays.get(d),MONTHS[mo])}
+    else if(d===tod)c.classList.add('today');
     else if(d<tod)c.classList.add('past');
     grid.appendChild(c);
   }
 }
 
-function showCrvDetail(day,data,monthName){
+function showCrvDetail(day,data,mn){
+  const ph=data?getPhase(data.dayNum||0):{label:'',c:'#ef4444'};
+  const art=data?getArt(data.dayNum||0):{title:'',text:'',ref:''};
+  $('crv-slot').innerHTML='<div class="crv-detail"><div class="det-date" style="color:#ef4444">'+day+' DE '+mn+(data?' — DIA '+data.dayNum:'')+' — CRAVING</div><div class="det-title">SENTIU VONTADE</div><div class="det-ph" style="color:'+ph.c+'">'+ph.label+'</div><div class="det-txt">'+art.text+'</div><div class="det-ref">'+art.ref+'</div><button class="btn-detclose" onclick="document.getElementById(\'crv-slot\').innerHTML=\'\'">fechar</button></div>';
+}
+
+function showRelDetail(day,data,mn){
   const ph=data?getPhase(data.dayNum||0):{label:'',c:'#f97316'};
   const art=data?getArt(data.dayNum||0):{title:'',text:'',ref:''};
-  $('crv-slot').innerHTML=`<div class="crv-detail"><div class="crv-date">${day} DE ${monthName}${data?' \u2014 DIA '+data.dayNum+' DE ABSTINÊNCIA':''}</div><div class="crv-title">SENTIU VONTADE</div><div class="crv-ph" style="color:${ph.c}">${ph.label}</div><div class="crv-txt">${art.text}</div><div class="crv-ref">${art.ref}</div><button class="btn-crvclose" onclick="document.getElementById('crv-slot').innerHTML=''">fechar</button></div>`;
+  const bioHtml=data?'<div class="det-bio">'+(data.rmssd?'<div class="det-bio-item"><div class="det-bio-val" style="color:#f97316">'+data.rmssd+'</div><div class="det-bio-lbl">RMSSD ms</div></div>':'')+(data.sono?'<div class="det-bio-item"><div class="det-bio-val" style="color:#3b82f6">'+data.sono+'</div><div class="det-bio-lbl">SONO h</div></div>':'')+(data.turno!==null&&data.turno!==undefined?'<div class="det-bio-item"><div class="det-bio-val" style="color:#8b5cf6">'+(data.turno?'SIM':'NÃO')+'</div><div class="det-bio-lbl">TURNO</div></div>':'')+'</div>':'';
+  $('crv-slot').innerHTML='<div class="rel-detail"><div class="det-date" style="color:#f97316">'+day+' DE '+mn+(data?' — DIA '+data.dayNum:'')+' — RECAÍDA</div><div class="det-title">RECAÍDA REGISTRADA</div><div class="det-ph" style="color:'+ph.c+'">'+ph.label+'</div>'+bioHtml+'<div class="det-txt">'+art.text+'</div><div class="det-ref">'+art.ref+'</div><button class="btn-detclose" onclick="document.getElementById(\'crv-slot\').innerHTML=\'\'">fechar</button></div>';
 }
 
 function openUrge(){
   const v=vices.find(x=>x.id===selId);
-  const d=v?dSince(v.start):0;
-  const art=getArt(d);const c=v?v.color:'#f97316';
+  const d=v?dSince(v.start):0,art=getArt(d),c=v?v.color:'#f97316';
   if(v){const ph=getPhase(d);if(!v.cravings)v.cravings=[];v.cravings.push({date:new Date().toISOString(),dayNum:d,phase:ph.label});save()}
   $('art-title').textContent=art.title;$('art-txt').textContent=art.text;$('art-ref').textContent=art.ref;
   $('bbegin').style.background=c;$('bbegin').style.display='block';
@@ -411,28 +536,56 @@ function startUrge(){
 }
 function closeUrge(){clearInterval(urgeIv);urgeOn=false;urgeT=600;show('counter')}
 
-function doReset(state){
+function selTurno(val){
+  selTurnoVal=val;
+  $('t-sim').classList.toggle('sel',val===1);
+  $('t-nao').classList.toggle('sel',val===0);
+}
+
+function resetRstForm(){
+  document.querySelectorAll('.bst').forEach(b=>b.classList.remove('sel'));
+  $('t-sim').classList.remove('sel');$('t-nao').classList.remove('sel');
+  $('r-rmssd').value='';$('r-sono').value='';
+}
+
+function doReset(){
   const v=vices.find(x=>x.id===selId);if(!v)return;
-  v.relapses.push({days:dSince(v.start),state});v.start=new Date().toISOString();
+  const d=dSince(v.start),ph=getPhase(d);
+  v.relapses.push({
+    date:new Date().toISOString(),
+    dayNum:d,
+    state:selState||'unknown',
+    turno:selTurnoVal,
+    rmssd:parseFloat($('r-rmssd').value)||null,
+    sono:parseFloat($('r-sono').value)||null,
+    phase:ph.label
+  });
   save();show('counter');
 }
 
-$('vi').onkeydown=e=>e.key==='Enter'&&addVice();
-$('badd').onclick=addVice;
-$('bbk').onclick=()=>{resetDel();show('cards')};
-$('bdl').onclick=delVice;
-$('btn-cal').onclick=()=>show('cal');
-$('cal-bk').onclick=()=>show('counter');
-$('btn-urge').onclick=openUrge;
-$('btn-rst').onclick=()=>show('reset');
-$('bbegin').onclick=startUrge;
-$('bcl').onclick=closeUrge;
-$('bcan').onclick=()=>show('counter');
-document.querySelectorAll('.bst').forEach(b=>b.onclick=()=>doReset(b.dataset.s));
+$('vi').addEventListener('keydown',function(e){if(e.key==='Enter')addVice()});
+$('badd').addEventListener('click',addVice);
+$('btn-back').addEventListener('click',function(){resetDel();show('cards')});
+$('bdl').addEventListener('click',delVice);
+$('btn-cal').addEventListener('click',function(){show('cal')});
+$('cal-bk').addEventListener('click',function(){show('counter')});
+$('btn-urge').addEventListener('click',openUrge);
+$('btn-rst').addEventListener('click',function(){show('reset')});
+$('bbegin').addEventListener('click',startUrge);
+$('bcl').addEventListener('click',closeUrge);
+$('bconf').addEventListener('click',doReset);
+$('bcan').addEventListener('click',function(){show('counter')});
+document.querySelectorAll('.bst').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.bst').forEach(x=>x.classList.remove('sel'));
+    b.classList.add('sel');selState=b.dataset.s;
+  });
+});
 
-setInterval(()=>{renderCards();if($('sc-counter').classList.contains('on'))updateCnt()},60000);
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
-load();renderCards();checkAll();
+setInterval(function(){renderCards();if($('sc-counter').classList.contains('on'))updateCnt()},60000);
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){});
+
+load();setDates();renderCards();checkAll();
 </script>
 </body>
 </html>
