@@ -12,9 +12,9 @@
 <link rel="apple-touch-icon" href="icon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#09090b;font-family:'Lilita One',cursive;color:#fff;overflow-x:hidden}
-.scr{display:none;min-height:100vh;flex-direction:column}
+*{box-sizing:border-box;margin:0;padding:0}html{overflow-x:hidden;width:100%}
+body{background:#09090b;font-family:'Lilita One',cursive;color:#fff;overflow-x:hidden;width:100%;max-width:100vw}
+.scr{display:none;flex-direction:column;width:100%;max-width:100vw;overflow-x:hidden}
 .scr.on{display:flex}
 
 /* MAX.CORE HEADER */
@@ -34,7 +34,7 @@ body{background:#09090b;font-family:'Lilita One',cursive;color:#fff;overflow-x:h
 @keyframes rg{0%,62%,100%{opacity:0}63%{transform:translateX(-10px);opacity:1;clip-path:polygon(0 0,100% 0,100% 40%,0 40%)}64%{transform:translateX(7px)}64.8%{opacity:0}67%{transform:translateX(-12px);opacity:1;clip-path:polygon(0 10%,100% 10%,100% 50%,0 50%)}67.5%{opacity:0}69%{transform:translateX(-7px);opacity:.6;clip-path:polygon(0 55%,100% 55%,100% 90%,0 90%)}69.5%{opacity:0}}
 @keyframes cg{0%,62%,100%{opacity:0}63%{transform:translateX(10px);opacity:1;clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%)}64%{transform:translateX(-7px)}64.8%{opacity:0}67%{transform:translateX(11px);opacity:1;clip-path:polygon(0 45%,100% 45%,100% 80%,0 80%)}67.5%{opacity:0}69%{transform:translateX(8px);opacity:.6;clip-path:polygon(0 0,100% 0,100% 40%,0 40%)}69.5%{opacity:0}}
 
-.logo{padding:8px 0 10px;text-align:center}
+.logo{padding:8px 0 10px;text-align:center;overflow:hidden;width:100%}
 .logo-name{font-size:38px;letter-spacing:3px;line-height:1;display:inline-block;position:relative;animation:mg 6s infinite}
 .logo-name::before,.logo-name::after{content:attr(data-t);position:absolute;top:0;left:0;font-family:'Lilita One',cursive;font-size:38px;letter-spacing:3px;width:100%;overflow:hidden}
 .logo-name::before{color:#ff0055;animation:rg 6s infinite;clip-path:polygon(0 0,100% 0,100% 45%,0 45%)}
